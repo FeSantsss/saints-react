@@ -1,0 +1,34 @@
+footer {
+  background-color: var(--white-main);
+  width: 100%;
+  height: 100%;
+}
+
+.container-footer {
+  background-color: var(--white-main);
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  max-width: 1070px;
+  min-width: 320px;
+  margin: auto;
+}
+
+#p-direitosreserv {
+  font-family: montserrat, sans-serif;
+  color: var(--gray-hover);
+  font-size: 12px;
+  margin: 0 auto;
+  overflow: hidden;
+  line-height: 1.2;
+  word-wrap: break-word;
+  width: 95%;
+}
+
+.container-division {
+  width: 100%;
+  height: 2px;
+  background-color: var(--gray-line);
+  margin: 2px;
+  padding: 1;
+}

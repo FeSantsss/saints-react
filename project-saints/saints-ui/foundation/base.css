@@ -1,0 +1,96 @@
+/* Fonts */
+
+/* Font Libre Basker */
+@font-face {
+  font-family: 'libre';
+  src: url(fonts/LibreBaskerville-VariableFont_wght.ttf) format("truetype");
+  font-display: swap;
+}
+
+/* Font SORA */
+
+@font-face {
+  font-family: 'Sora';
+  src: url(fonts/Sora-VariableFont_wght.ttf) format("truetype");
+  font-display: swap;
+}
+
+
+/* Font EVERY HEADLINE */
+
+@font-face {
+  font-family: 'Every-Head-light';
+  src: url(fonts/EVERYHEADLINE-Thin.otf) format("opentype");
+  font-display: swap;
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Every-Head-light-italic';
+  src: url(fonts/EVERYHEADLINE-ThinItalic.otf) format("opentype");
+  font-display: swap;
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Every-Head-regular';
+  src: url(fonts/EVERYHEADLINE-Regular.otf) format("opentype");
+  font-display: swap;
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Every-Head-regular-italic';
+  src: url(fonts/EVERYHEADLINE-RegularItalic.otf) format("opentype");
+  font-display: swap;
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Every-Head-medium';
+  src: url(fonts/EVERYHEADLINE-Medium.otf) format("opentype");
+  font-display: swap;
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Every-Head-medium-italic';
+  src: url(fonts/EVERYHEADLINE-MediumItalic.otf) format("opentype");
+  font-display: swap;
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Every-Head-bold';
+  src: url(fonts/EVERYHEADLINE-Bold.otf) format("opentype");
+  font-display: swap;
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'Every-Head-bold-italic';
+  src: url(fonts/EVERYHEADLINE-BoldItalic.otf) format("opentype");
+  font-display: swap;
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Merryweather-regular';
+  src: url(fonts/Merriweather-VariableFont_opsz\,wdth\,wght.ttf) format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Merryweather-light';
+  src: url(fonts/Merriweather_24pt-Light.ttf) format("truetype");
+  font-display: swap;
+}
+
+
+/* Resetting default margin and padding */
+
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+

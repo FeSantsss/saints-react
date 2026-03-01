@@ -1,0 +1,66 @@
+/* white button */
+
+.saints-button {
+
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-lg);
+
+  font-family: var(--font-primary);
+  font-size: var(--space-md);
+  font-weight: var(--font-semibold);
+  margin-top: var(--space-lg);
+
+  background-color: var(--white-main);
+  color: var(--black-main);
+
+  border: 1px solid transparent;
+  cursor: pointer;
+
+  box-shadow: 1px 1px 8px var(--black-soft);
+
+  transition:
+    background-color 0.2s ease,
+    color 1s ease,
+    transform 0.1s ease,
+    box-shadow 0.5s ease;
+}
+
+.saints-button:hover{
+  border: 1px solid var(--gray-hover);
+  background-color: var(--black-soft);
+  color: var(--white-main);
+}
+
+/* dark button */
+
+.saints-button-dark {
+
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-lg);
+
+  font-family: var(--font-primary);
+  font-size: var(--space-md);
+  font-weight: var(--font-semibold);
+  margin-top: var(--space-lg);
+
+  background-color: var(--black-main);
+  color: var(--white-main);
+
+  border: 1px solid transparent;
+  cursor: pointer;
+
+  box-shadow: 1px 1px 8px var(--white-muted);
+
+  transition:
+    background-color 0.2s ease,
+    color 1s ease,
+    transform 0.1s ease,
+    box-shadow 0.5s ease;
+}
+
+.saints-button-dark:hover{
+  border: 1px solid var(--black-soft);
+  background-color: var(--white-main);
+  color: var(--black-main);
+}
+

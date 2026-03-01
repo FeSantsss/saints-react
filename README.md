@@ -1,0 +1,20 @@
+# Saints-films project 
+
+## Site para a Saints Films, empresa profissional em produção audiovisual.
+
+Esse dado projeto foi concebido para a empresa Saints Films, com o intuito e desejo de expandir o trabalho excepcional da empresa.
+Seções construidas com o uso de tecnologias e conhecimento de ponta.
+
+### Arquitetura do Projeto
+
+- Em processo de migração para estrutura React
+- Estrutura organizada por páginas e componentes React
+- Preparando para futura migração para SPA com React Router
+
+### Tecnologias
+- React JSX
+- CSS 3
+- Vite
+
+### Autor e Produtor:
+#### Felipy Santos - Software Engineer (Full-Stack)  

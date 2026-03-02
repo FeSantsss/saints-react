@@ -3,6 +3,10 @@ import saintslogo from '../images/saints-logo.png'
 import { useState } from 'react'
 
 const Menu = () => {
+  const [isOpen, setOpen] = useState(false);
+  const toggleMenu = () => {
+    setOpen(prev => !prev);
+  }
 
   return (
     <header>
@@ -14,17 +18,17 @@ const Menu = () => {
         </a>
         
           
-          <div className="burguer-menu">
-            <div className="first-line"></div>
-            <div className="second-line"></div>
+          <div className="burguer-menu" onClick={toggleMenu} >
+            <div className={isOpen ? 'first-line active' : 'first-line'}></div>
+            <div className={isOpen ? 'second-line active' : 'second-line'}></div>
           </div>
 
-        <nav className="nav-header-menu">
+        <nav className={isOpen ? 'nav-header-menu is-open' : 'nav-header-menu'}>
 
-          <a className="link-interno" rel="noopener noreferrer"><u>início</u></a>
-          <a className="link-interno" rel="noopener noreferrer">projetos</a>
-          <a className="link-interno" rel="noopener noreferrer">serviços</a>
-          <a className="link-interno" rel="noopener noreferrer">sobre</a>
+          <a className="link-interno" href='#' rel="noopener noreferrer">início</a>
+          <a className="link-interno" href='#' rel="noopener noreferrer">projetos</a>
+          <a className="link-interno" href='#' rel="noopener noreferrer">serviços</a>
+          <a className="link-interno" href='#' rel="noopener noreferrer">sobre</a>
 
         </nav>
 

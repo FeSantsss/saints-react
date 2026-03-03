@@ -1,9 +1,24 @@
 import '../assets/header.css'
 import saintslogo from '../images/saints-logo.png'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const Menu = () => {
   const [isOpen, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isOpen]);
+
   const toggleMenu = () => {
     setOpen(prev => !prev);
   }

@@ -52,7 +52,6 @@ header {
 .nav-header-menu {
   display: flex;
   gap: 20px;
-  background-color: #fff;
 }
 
 
@@ -85,7 +84,6 @@ header {
 
   .burguer-menu {
    display: block;
-   background-color: #fff;
    cursor: pointer;
   }
 

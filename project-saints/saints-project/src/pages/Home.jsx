@@ -6,6 +6,7 @@ const Home = () => {
   return (
     <>
       <Menu/>
+      <ScrollBar/>
       <div style={{height: "750px"}}></div>
       <Footer/> 
     </>

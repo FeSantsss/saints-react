@@ -17,7 +17,7 @@
   position: fixed;
   bottom: 90px;
   right: 20px;
-  width: 320px;
+  width: 330px;
   background: var(--bg-main);
   border-radius: var(--radius);
   box-shadow: var(--shadow-soft);
@@ -26,19 +26,11 @@
   overflow: hidden;
   z-index: 1000;
   font-family: var(--font-primary);
-
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 1s ease-in, opacity 1s ease;
 }
 
 .chat-atendimento.open {
   animation: chatAnimationOpen 0.9s forwards;
   display: flex;
-
-  max-height: 500px;
-  opacity: 1;
 }
 
 @keyframes chatAnimationOpen {
@@ -63,7 +55,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 16px;
+  padding: 0px 16px;
   color: var(--text-main);
   border-bottom: 1px solid rgba(82, 81, 81, 0.597);
   background-color: var(--black-main);
@@ -98,7 +90,7 @@
   color: var(--white-soft);
 }
 
-#mensagens {
+.mensagens {
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -109,7 +101,9 @@
 
 .msg {
   font-size: 14px;
-  line-height: 2;
+  line-height: 1.5;
+  word-break: break-word;
+  white-space: normal;
 }
 
 .msg.bot {
@@ -129,16 +123,16 @@
   max-width: 85%;
 }
 
-#input-area {
+.input-area {
   padding: 12px;
   display: flex;
   gap: 8px;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-#input-area input,
-#input-area select,
-#input-area textarea {
+.input-area input,
+.input-area select,
+.input-area textarea {
   flex: 1;
   border-radius: 12px;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -149,7 +143,7 @@
 
 
 
-#input-area button {
+.input-area button {
   background: #000;
   color: #fff;
   border: none;
@@ -158,12 +152,13 @@
   cursor: pointer;
 }
 
-#chat-toggle {
+.chat-toggle {
   position: fixed;
   bottom: 20px;
   right: 20px;
   width: 220px;
   height: 60px;
+  color: #fff;
   background-color: var(--black-deep);
   border-radius: var(--radius-lg);
   background-size: contain;
@@ -174,13 +169,12 @@
   transition: 0.5s;
 }
 
-#chat-toggle:hover {
+.chat-toggle:hover {
   transition: 0.5s;
-  background-color: var(--gray-hover);
-  scale: 101%;
+  background-color: var(--black-main);
 }
 
-#p-in-chat-toggle {
+.p-in-chat-toggle {
   color: #f5f5f7;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -188,7 +182,7 @@
   font-size: 10px;
 }
 
-#p-in-chat-toggle::before {
+.p-in-chat-toggle::before {
   content: url(../images/chat-4-24.png);
   margin-right: 10px;
   vertical-align: middle;

@@ -17,7 +17,7 @@
   position: fixed;
   bottom: 90px;
   right: 20px;
-  width: 330px;
+  width: 320px;
   background: var(--bg-main);
   border-radius: var(--radius);
   box-shadow: var(--shadow-soft);
@@ -101,16 +101,15 @@
 
 .msg {
   font-size: 14px;
-  line-height: 1.5;
-  word-break: break-word;
-  white-space: normal;
+  line-height: 1.7;
+  font-family: var(--font-primary);
 }
 
 .msg.bot {
   background: var(--bg-bot);
   color: var(--text-main);
   padding: 10px 14px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   max-width: 85%;
 }
 
@@ -118,7 +117,7 @@
   background: var(--bg-user);
   color: #fff;
   padding: 10px 14px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   align-self: flex-end;
   max-width: 85%;
 }
@@ -147,9 +146,13 @@
   background: #000;
   color: #fff;
   border: none;
-  border-radius: 12px;
+  border-radius: 17px;
   padding: 0 14px;
   cursor: pointer;
+  transition: background-color 0.5s;
+}
+.input-area button:hover {
+  background-color: #6e6e73;
 }
 
 .chat-toggle {

@@ -1,4 +1,4 @@
-import "../../assets/chat.css";
+import "../assets/chat.css";
 
 // ! Hooks principais do React
 // ? useState → controla estados internos do componente

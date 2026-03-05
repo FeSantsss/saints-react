@@ -1,7 +1,7 @@
 import Footer from '../components/Footer'
 import Menu from '../components/Menu'
 import ScrollBar from '../components/ScrollBar'
-import Chat from '../components/Chat/Chat'
+import Chat from '../components/Chat'
 
 const Home = () => {
   return (

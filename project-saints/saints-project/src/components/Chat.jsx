@@ -17,30 +17,44 @@ import { useState, useEffect, useRef } from "react";
 // ? type → tipo do campo
 // ? options → opções para select
 const fluxos = {
-  casamento: [
-    { label: "Data do casamento:", name: "data", type: "date" },
-    { label: "Formato:", name: "formato", type: "select", options: ["Cerimônia", "Festa", "Ambos"] },
-    { label: "Convidados:", name: "convidados", type: "number" },
-    { label: "Descreva brevemente:", name: "descricao", type: "textarea" }
-  ],
-  reels: [
-    { label: "Nome da marca:", name: "marca", type: "text" },
-    { label: "Objetivo:", name: "objetivo", type: "select", options: ["Engajamento", "Vendas", "Autoridade"] },
-    { label: "Quantidade de vídeos:", name: "quantidade", type: "number" },
-    { label: "Descreva brevemente:", name: "descricao", type: "textarea" }
-  ],
-  Aereo: [
-    { label: "Local:", name: "local", type: "text" },
-    { label: "Data:", name: "data", type: "date" },
-    { label: "Área:", name: "area", type: "select", options: ["Urbana", "Rural"] },
-    { label: "Descreva brevemente:", name: "descricao", type: "textarea" }
-  ],
-  evento: [
-    { label: "Tipo de evento:", name: "tipo", type: "select", options: ["Aniversário", "Formatura", "Corporativo", "Esportivo"] },
-    { label: "Data:", name: "data", type: "date" },
-    { label: "Duração (horas):", name: "duracao", type: "number" },
-    { label: "Descreva brevemente:", name: "descricao", type: "textarea" }
-  ]
+  casamento: {
+    title: "Casamento",
+    perguntas: [
+      { label: "Data do casamento:", name: "data", type: "date" },
+      { label: "Formato:", name: "formato", type: "select", options: ["Cerimônia", "Festa", "Ambos"] },
+      { label: "Convidados:", name: "convidados", type: "number" },
+      { label: "Descreva brevemente:", name: "descricao", type: "textarea" }
+    ]
+  },
+
+  reels: {
+    title: "Reels para Redes Sociais",
+    perguntas: [
+      { label: "Nome da marca:", name: "marca", type: "text" },
+      { label: "Objetivo:", name: "objetivo", type: "select", options: ["Engajamento", "Vendas", "Autoridade"] },
+      { label: "Quantidade de vídeos:", name: "quantidade", type: "number" },
+      { label: "Descreva brevemente:", name: "descricao", type: "textarea" }
+    ]
+  },
+
+  Aereo: {
+    title: "Vídeo Aéreo",
+    perguntas: [
+      { label: "Local:", name: "local", type: "text" },
+      { label: "Data:", name: "data", type: "date" },
+      { label: "Área:", name: "area", type: "select", options: ["Urbana", "Rural"] },
+      { label: "Descreva brevemente:", name: "descricao", type: "textarea" }
+    ]
+  },
+  evento: {
+    title: "Evento",
+    perguntas: [
+      { label: "Tipo de evento:", name: "tipo", type: "select", options: ["Aniversário", "Formatura", "Corporativo", "Esportivo"] },
+      { label: "Data:", name: "data", type: "date" },
+      { label: "Duração (horas):", name: "duracao", type: "number" },
+      { label: "Descreva brevemente:", name: "descricao", type: "textarea" }
+    ]
+  }
 };
 
 export default function Chat() {
@@ -88,6 +102,19 @@ export default function Chat() {
     setMensagens(prev => [...prev, { tipo: "user", texto }]);
   };
 
+  // ! formata a data 
+  function formatarData(data) {
+    if (!data) return "";
+
+    const d = new Date(data);
+
+    return d.toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric"
+    });
+  }
+
 
   // * ===============================
   // * SELEÇÃO DE SERVIÇO
@@ -101,7 +128,7 @@ export default function Chat() {
     const formatado =
       valor.charAt(0).toUpperCase() + valor.slice(1);
 
-    userMsg(`${formatado}`);
+    userMsg(fluxos[valor].title);
 
     // ! Reinicia fluxo
     setPasso(0);
@@ -114,14 +141,14 @@ export default function Chat() {
 
   useEffect(() => {
 
-    // @flow Se ainda houver perguntas
-    if (servico && passo < fluxos[servico].length) {
-      const pergunta = fluxos[servico][passo];
+    const perguntas = fluxos[servico]?.perguntas;
+
+    if (servico && passo < perguntas.length) {
+      const pergunta = perguntas[passo];
       botMsg(pergunta.label);
     }
 
-    // @flow Se terminou todas as perguntas
-    if (servico && passo === fluxos[servico].length) {
+    if (servico && passo === perguntas.length) {
       finalizar();
     }
 
@@ -136,7 +163,7 @@ export default function Chat() {
 
     if (!servico) return;
 
-    const pergunta = fluxos[servico]?.[passo];
+    const pergunta = fluxos[servico]?.perguntas?.[passo];
 
     // ! Validação básica
     if (!pergunta || !inputValue.trim()) return;
@@ -165,10 +192,18 @@ export default function Chat() {
     const numero = "5587996394734";
 
     let texto = "Olá! Quero contratar um serviço Saints:%0A";
-    texto += `%0AServiço: ${servico}%0A`;
+    texto += `%0AServiço: ${fluxos[servico].title}%0A`;
 
     for (const k in respostas) {
-      texto += `${k} ${respostas[k]}%0A`;
+
+      let valor = respostas[k];
+
+      // se for campo de data, formata
+      if (k.toLowerCase().includes("data")) {
+        valor = formatarData(valor);
+      }
+
+      texto += `${k} ${valor}%0A`;
     }
 
     // ! Redirecionamento externo
@@ -209,7 +244,7 @@ export default function Chat() {
 
   const renderInput = () => {
 
-    const campo = fluxos[servico]?.[passo];
+    const campo = fluxos[servico]?.perguntas?.[passo];
 
     if (!campo) return null;
 
@@ -275,7 +310,7 @@ export default function Chat() {
           </div>
         </div>
 
-        {/* * Área de mensagens */}
+        {/* Área de mensagens */}
         <div className="mensagens" ref={mensagensRef}>
           {mensagens.map((m, i) => (
             <div key={i} className={`msg ${m.tipo}`}>
@@ -284,21 +319,21 @@ export default function Chat() {
           ))}
         </div>
 
-        {/* * Área de input */}
+        {/* Área de input */}
         <div className="input-area">
 
           {!servico ? (
 
             <select onChange={(e) => selecionarServico(e.target.value)}>
               <option value="">Selecione</option>
-              {Object.keys(fluxos).map((key) => (
+              {Object.entries(fluxos).map(([key, fluxo]) => (
                 <option key={key} value={key}>
-                  {key}
+                  {fluxo.title}
                 </option>
               ))}
             </select>
 
-          ) : passo < fluxos[servico].length ? (
+          ) : passo < fluxos[servico].perguntas.length ? (
 
             <>
               {renderInput()}

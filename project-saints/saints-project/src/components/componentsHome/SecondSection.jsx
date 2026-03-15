@@ -1,4 +1,8 @@
 import '../../assets/secondSection.css'
+import aboutOne from '../../images/about-one.JPEG'
+import aboutTwo from '../../images/about-two.JPEG'
+import aboutThree from '../../images/about-three.JPEG'
+import aboutFour from '../../images/about-four.JPEG'
 
 const SecondSection = () => {
   return (
@@ -18,6 +22,13 @@ const SecondSection = () => {
           </p>
           
         </h3>
+
+        <div className="images-review">
+          <img src={aboutOne} className='image-review image-review-one' alt="image for review section" />
+          <img src={aboutTwo} className='image-review image-review-two' alt="image for review section" />
+          <img src={aboutThree} className='image-review image-review-three' alt="image for review section" />
+          <img src={aboutFour} className='image-review image-review-four' alt="image for review section" />
+        </div>
 
         
       </section>

@@ -16,4 +16,35 @@
 
 strong{
   font-weight: 800;
+} 
+
+.images-review{
+  padding-top: 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.image-review{
+  
+}
+
+.image-review-one{
+  width: 320px;
+  align-self: flex-start;
+}
+
+.image-review-two{
+  width: 250px;
+  align-self: flex-end;
+  
+}
+
+.image-review-three{
+  width: 250px;
+  align-self: flex-start;
+}
+
+.image-review-four{
+  width: 300px;
+  align-self: flex-end;
 }

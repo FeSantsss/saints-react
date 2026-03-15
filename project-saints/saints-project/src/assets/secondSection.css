@@ -29,22 +29,22 @@ strong{
 }
 
 .image-review-one{
-  width: 320px;
+  width: 280px;
   align-self: flex-start;
 }
 
 .image-review-two{
-  width: 250px;
+  width: 210px;
   align-self: flex-end;
   
 }
 
 .image-review-three{
-  width: 250px;
+  width: 210px;
   align-self: flex-start;
 }
 
 .image-review-four{
-  width: 300px;
+  width: 280px;
   align-self: flex-end;
 }

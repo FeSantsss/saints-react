@@ -5,7 +5,7 @@
   font-family: var(--font-libre-rich);
   text-align: center;
 
-  padding: 40px 35px;
+  padding: 20px 35px 40px;
 }
 
 .about-text-h3{
@@ -23,9 +23,6 @@ strong{
   display: flex;
   flex-direction: column;
   gap: 50px;
-}
-.image-review{
-  
 }
 
 .image-review-one{

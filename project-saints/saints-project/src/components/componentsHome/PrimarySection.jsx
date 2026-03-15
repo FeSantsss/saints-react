@@ -15,7 +15,6 @@ const PrimarySection = () => {
           <h2 className="title-section-one">
             nossos projetos
           </h2>
-          <p className='about-title-section-one'>Não entregamos vídeos. Construímos presença.</p>
         </div>
 
 

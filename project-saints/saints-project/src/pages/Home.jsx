@@ -11,7 +11,7 @@ const Home = () => {
     <>
       <Menu/>
       <ScrollBar/>
-      <Chat/> 
+      
       <Hero/>
       <PrimarySection/>
       <SecondSection/>

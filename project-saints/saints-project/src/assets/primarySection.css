@@ -37,14 +37,14 @@
 
 .div-title{
   text-align: center;
-  padding: 80px 40px;
+  padding: 80px 20px;
   font-family: var(--font-libre-rich);
 }
 
 
 .title-section-one{
   font-weight: 700;
-  font-size: clamp(30px, 3.2rem, 60px);
+  font-size: clamp(25px, 2.7rem, 60px);
   margin-bottom: 5px;
 }
 

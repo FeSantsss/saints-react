@@ -1,0 +1,15 @@
+.container-about{
+  height: fit-content;
+  background-color: var(--black-main);
+  color: var(--white-main);
+  font-family: var(--font-libre-rich);
+
+  padding: 40px 35px;
+}
+
+.about-text-h3{
+  text-align: start;
+  font-size: 18px;
+  font-weight: 100;
+  padding: 15px 0;
+}

@@ -2,6 +2,9 @@ import Footer from '../components/Footer'
 import Menu from '../components/Menu'
 import ScrollBar from '../components/ScrollBar'
 import Chat from '../components/Chat'
+import Hero from '../components/componentsHome/Hero'
+import PrimarySection from '../components/componentsHome/PrimarySection'
+import SecondSection from '../components/componentsHome/SecondSection'
 
 const Home = () => {
   return (
@@ -9,7 +12,9 @@ const Home = () => {
       <Menu/>
       <ScrollBar/>
       <Chat/> 
-      <div style={{height: "750px"}}></div>
+      <Hero/>
+      <PrimarySection/>
+      <SecondSection/>
       <Footer/> 
     </>
   )

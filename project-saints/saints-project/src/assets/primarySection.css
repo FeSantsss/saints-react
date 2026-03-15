@@ -34,18 +34,22 @@
   }
 }
 
+
 .div-title{
   text-align: center;
   padding: 80px 40px;
   font-family: var(--font-libre-rich);
 }
 
+
 .title-section-one{
   font-weight: 700;
-  font-size: 30px;
+  font-size: clamp(30px, 3.2rem, 60px);
+  margin-bottom: 5px;
 }
 
 .about-title-section-one{
-  font-size: 13px;
-  font-weight: 100;
+  font-size: 16px;
+  font-weight: 300;
+  font-family: var(--font-primary);
 }

@@ -39,8 +39,9 @@ header {
 }
 
 .logo-icon-saints {
-  width: clamp(69px, 79px, 89px);
+  width: clamp(90px, 7rem, 100px);
 }
+
 
 .burguer-menu {
   display: none;
@@ -74,6 +75,7 @@ header {
     backdrop-filter: blur(85px);
     transition: 0.5s;
   }
+  
   
 
   .nav-header-menu.is-open {

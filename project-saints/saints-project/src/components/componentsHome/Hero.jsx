@@ -14,7 +14,7 @@ const Hero = () => {
         <div className="dicionary-design">
 
           <p className="saints-dicionary-name">
-            Saints.
+            saints.
           </p>
 
           <div className="dicionary">

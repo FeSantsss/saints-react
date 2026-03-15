@@ -1,5 +1,6 @@
 import '../assets/header.css'
-import saintslogo from '../images/saints-logo.png'
+import saintslogo from '../images/saints-logo.PNG'
+import saintsLogoHover from '../images/saints-logo-hover.PNG'
 import { useEffect, useState } from 'react'
 
 const Menu = () => {

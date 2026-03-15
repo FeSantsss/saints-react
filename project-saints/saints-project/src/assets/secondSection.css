@@ -3,13 +3,17 @@
   background-color: var(--black-main);
   color: var(--white-main);
   font-family: var(--font-libre-rich);
+  text-align: center;
 
   padding: 40px 35px;
 }
 
 .about-text-h3{
-  text-align: start;
-  font-size: 18px;
+  font-size: 21px;
   font-weight: 100;
   padding: 15px 0;
+}
+
+strong{
+  font-weight: 800;
 }

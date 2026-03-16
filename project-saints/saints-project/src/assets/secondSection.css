@@ -25,23 +25,30 @@ strong{
   gap: 50px;
 }
 
+@media(min-width: 1100px){
+  .images-review{
+    padding: 90px 70px 0;
+    gap: 0px;
+  }
+}
+
 .image-review-one{
-  width: 280px;
+  width: clamp(280px, 40vw, 900px);
   align-self: flex-start;
 }
 
 .image-review-two{
-  width: 210px;
+  width: clamp(210px, 35vw, 720px);
   align-self: flex-end;
   
 }
 
 .image-review-three{
-  width: 210px;
+  width: clamp(210px, 35vw, 720px);
   align-self: flex-start;
 }
 
 .image-review-four{
-  width: 280px;
+  width: clamp(280px, 40vw, 900px);
   align-self: flex-end;
 }

@@ -3,8 +3,10 @@
   height: fit-content;
   max-width: 1990px;
   min-width: 320px;
+  margin: auto;
   display: flex;
   flex-direction: column;
+
 
   padding: 50px clamp(16px, 5vw, 40px);
   padding-bottom: 70px;

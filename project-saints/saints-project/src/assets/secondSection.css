@@ -4,6 +4,10 @@
   color: var(--white-main);
   font-family: var(--font-libre-rich);
   text-align: center;
+  margin: auto;
+
+  max-width: 1990px;
+  min-width: 320px;
 
   padding: 20px 35px 40px;
 }

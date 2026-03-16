@@ -27,32 +27,39 @@ strong{
   display: flex;
   flex-direction: column;
   gap: 50px;
+  justify-content: center;
 }
 
 @media(min-width: 1100px){
   .images-review{
     padding: 90px 70px 0;
-    gap: 0px;
+  }
+}
+@media(min-width: 1540px){
+  .images-review{
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-shrink: 1;
   }
 }
 
 .image-review-one{
-  width: clamp(280px, 40vw, 900px);
+  width: clamp(280px, 45vw, 650px);
   align-self: flex-start;
 }
 
 .image-review-two{
-  width: clamp(210px, 35vw, 720px);
+  width: clamp(210px, 40vw, 550px);
   align-self: flex-end;
   
 }
 
 .image-review-three{
-  width: clamp(210px, 35vw, 720px);
+  width: clamp(210px, 40vw, 550px);
   align-self: flex-start;
 }
 
 .image-review-four{
-  width: clamp(280px, 40vw, 900px);
+  width: clamp(280px, 45vw, 650px);
   align-self: flex-end;
 }

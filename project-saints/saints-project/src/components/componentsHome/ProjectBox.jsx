@@ -6,7 +6,7 @@ const ProjectBox = ({ image , content}) => {
     <>
       <div>
         <div className="project-box">
-          <img className='image-for-project-box' src={image} alt="image of project" />
+          <img className='image-for-project-box' src={image} alt="image of project" loading='lazy' />
         </div>
         <h2 className='content-box-design'>{content}</h2>
         <Buttom text={"ver mais"}/>

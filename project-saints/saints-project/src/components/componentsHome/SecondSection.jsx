@@ -1,10 +1,6 @@
 import '../../assets/secondSection.css'
 import {motion} from 'framer-motion' 
 
-import aboutOne from '../../images/about-one.JPEG'
-import aboutTwo from '../../images/about-two.JPEG'
-import aboutThree from '../../images/about-three.JPEG'
-import aboutFour from '../../images/about-four.JPEG'
 
 
 const SecondSection = () => {
@@ -29,7 +25,7 @@ const SecondSection = () => {
         <div className="images-review">
 
           <motion.img 
-            src={aboutOne} 
+            src="https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/about-one.JPEG" 
             className='image-review image-review-one' 
             alt="image for review section" 
             initial={{
@@ -47,9 +43,10 @@ const SecondSection = () => {
               ease: "easeOut"
             }}
             viewport={{ once: true }}
+            loading='lazy'
           />
 
-          <motion.img src={aboutTwo} 
+          <motion.img src="https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/about-two.JPEG"
             className='image-review image-review-two' 
             alt="image for review section" 
             initial={{
@@ -67,9 +64,10 @@ const SecondSection = () => {
               ease: "easeOut"
             }}
             viewport={{ once: true }}
+            loading='lazy'
           />
 
-          <motion.img src={aboutThree} 
+          <motion.img src="https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/about-three.JPEG"
             className='image-review image-review-three' 
             alt="image for review section"
             initial={{
@@ -87,8 +85,9 @@ const SecondSection = () => {
               ease: "easeOut"
             }}
             viewport={{ once: true }}
+            loading='lazy'
           />
-          <motion.img src={aboutFour} 
+          <motion.img src="https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/about-four.JPEG" 
             className='image-review image-review-four'  
             alt="image for review section" 
             initial={{
@@ -106,6 +105,7 @@ const SecondSection = () => {
               ease: "easeOut"
             }}
             viewport={{ once: true }}
+            loading='lazy'
           />
         </div>
 

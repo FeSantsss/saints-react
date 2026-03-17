@@ -2,10 +2,6 @@ import ProjectBox from './ProjectBox'
 
 import '../../assets/primarySection.css'
 
-import imageOne from '../../images/image-one.JPEG'
-import imageTwo from '../../images/image-two.JPEG'
-import imageThree from '../../images/image-three.JPEG'
-
 
 const PrimarySection = () => {
   return (
@@ -19,9 +15,9 @@ const PrimarySection = () => {
 
 
         <div className="div-cards">
-          <ProjectBox image={imageOne} content={"conteúdo para redes"}/>
-          <ProjectBox image={imageTwo} content={"cobertura de eventos"}/>
-          <ProjectBox image={imageThree} content={"campanhas corporativas"}/>
+          <ProjectBox image="https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/image-one.JPEG" content={"conteúdo para redes"}/>
+          <ProjectBox image="https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/image-two.JPEG" content={"cobertura de eventos"}/>
+          <ProjectBox image="https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/image-three.JPEG" content={"campanhas corporativas"}/>
         </div>
 
       </section>

@@ -49,11 +49,5 @@
 /* Fonts */
 
   --font-primary: 'Sora', system-ui, sans-serif;
-  --font-secondary-light: 'Every-Head-light', system-ui, sans-serif;
-  --font-secondary-regular: 'Every-Head-regular', system-ui, sans-serif;
-  --font-secondary-medium: 'Every-Head-medium', system-ui, sans-serif;
-  --font-secondary-bold: 'Every-Head-bold', system-ui, sans-serif;
-  --font-tertiary-regular: 'Merryweather-regular', serif;
-  --font-tertiary-light: 'Merryweather-light', serif;
   --font-libre-rich: 'libre', system-ui, sans-serif;
 }

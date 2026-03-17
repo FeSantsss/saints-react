@@ -26,7 +26,7 @@ footer {
 }
 
 #p-direitosreserv {
-  font-family: montserrat, sans-serif;
+  font-family: var(--font-primary);
   color: var(--gray-hover);
   font-size: 12px;
   margin: 0 auto;

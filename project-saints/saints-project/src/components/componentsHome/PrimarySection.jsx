@@ -1,9 +1,19 @@
 import ProjectBox from './ProjectBox'
 
 import '../../assets/primarySection.css'
+import { useState, useEffect } from 'react'
 
 
 const PrimarySection = () => {
+  const [projects, setProjects] = useState([])
+
+  useEffect(() => {
+    fetch("/ImagesPrimarySection.json")
+      .then(res => res.json())
+      .then(data => setProjects(data))
+  }, [])
+
+
   return (
     <>
       <section className="container-primary">
@@ -15,9 +25,13 @@ const PrimarySection = () => {
 
 
         <div className="div-cards">
-          <ProjectBox image="https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/image-one.JPEG" content={"conteúdo para redes"}/>
-          <ProjectBox image="https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/image-two.JPEG" content={"cobertura de eventos"}/>
-          <ProjectBox image="https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/image-three.JPEG" content={"campanhas corporativas"}/>
+          {projects.map(project => (
+            <ProjectBox
+              key={project.id}
+              image={project.image}
+              content={project.content}
+            />
+          ))}
         </div>
 
       </section>

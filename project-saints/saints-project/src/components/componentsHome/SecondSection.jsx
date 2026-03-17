@@ -1,9 +1,18 @@
 import '../../assets/secondSection.css'
 import {motion} from 'framer-motion' 
+import { useState, useEffect } from 'react'
 
 
 
 const SecondSection = () => {
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    fetch("/ImagesSecondSection.json")
+      .then(res => res.json())
+      .then(data => setImages(data))
+  }, [])
+
   return (
     <>
       <section className="container-about">
@@ -23,90 +32,32 @@ const SecondSection = () => {
         </h3>
 
         <div className="images-review">
+          {images.map((image) => (
+            <motion.img
+              src={image.image}
+              key={image.id}
+              className={image.class}
+              alt="image for review section"
 
-          <motion.img 
-            src="https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/about-one.JPEG" 
-            className='image-review image-review-one' 
-            alt="image for review section" 
-            initial={{
-              opacity: 0,
-              y: -80,
-              filter: "blur(10px)"
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-              filter: "blur(0px)"
-            }}
-            transition={{
-              duration: 1,
-              ease: "easeOut"
-            }}
-            viewport={{ once: true }}
-            loading='lazy'
-          />
+              initial={{
+                opacity: 0,
+                y: -80,
+                filter: "blur(10px)"
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                filter: "blur(0px)"
+              }}
+              transition={{
+                duration: 1,
+                ease: "easeOut"
+              }}
+              viewport={{ once: true }}
+              loading='lazy'
+            />
+          ))}
 
-          <motion.img src="https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/about-two.JPEG"
-            className='image-review image-review-two' 
-            alt="image for review section" 
-            initial={{
-              opacity: 0,
-              y: -80,
-              filter: "blur(10px)"
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-              filter: "blur(0px)"
-            }}
-            transition={{
-              duration: 1,
-              ease: "easeOut"
-            }}
-            viewport={{ once: true }}
-            loading='lazy'
-          />
-
-          <motion.img src="https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/about-three.JPEG"
-            className='image-review image-review-three' 
-            alt="image for review section"
-            initial={{
-              opacity: 0,
-              y: -80,
-              filter: "blur(10px)"
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-              filter: "blur(0px)"
-            }}
-            transition={{
-              duration: 1,
-              ease: "easeOut"
-            }}
-            viewport={{ once: true }}
-            loading='lazy'
-          />
-          <motion.img src="https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/about-four.JPEG" 
-            className='image-review image-review-four'  
-            alt="image for review section" 
-            initial={{
-              opacity: 0,
-              y: -80,
-              filter: "blur(10px)"
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-              filter: "blur(0px)"
-            }}
-            transition={{
-              duration: 1,
-              ease: "easeOut"
-            }}
-            viewport={{ once: true }}
-            loading='lazy'
-          />
         </div>
 
         

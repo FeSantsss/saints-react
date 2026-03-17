@@ -45,7 +45,7 @@ const Menu = () => {
           <a className="link-interno" href='#' rel="noopener noreferrer">início</a>
           <a className="link-interno" href='#' rel="noopener noreferrer">projetos</a>
           <a className="link-interno" href='#' rel="noopener noreferrer">serviços</a>
-          <a className="link-interno" href='#' rel="noopener noreferrer">sobre</a>
+          <a className="link-interno" href='#' rel="noopener noreferrer">sobre</a> 
 
         </nav>
 

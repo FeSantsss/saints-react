@@ -9,6 +9,7 @@ import SecondSection from '../components/componentsHome/SecondSection'
 const Home = () => {
   return (
     <>
+    <title>Saints Films | início </title>
       <Menu/>
       <ScrollBar/>
       <Chat/>

@@ -1,17 +1,38 @@
 import '../../assets/hero.css'
 
+import {motion} from 'framer-motion'
+
 const Hero = () => {
   return (
     <>
       <section className="hero-container">
 
-        <h1 className="slogan-text">
+        <motion.h1 
+          className="slogan-text"
+          initial={{
+            opacity: 0,
+            x: -40,
+            filter: "blur(70px)"
+          }}
+          whileInView={{
+            opacity: 1,
+            x: 0,
+            filter: "blur(0px)"
+          }}
+          transition={{
+            duration: 1,
+            ease: "easeOut"
+          }}
+          viewport={{ once: true }}
+        >
           imagem, <br />
           presença & <br />
           posicionamento.
-        </h1>
+        </motion.h1>
 
-        <div className="dicionary-design">
+        <div 
+          className="dicionary-design"
+        >
 
           <p className="saints-dicionary-name">
             saints.

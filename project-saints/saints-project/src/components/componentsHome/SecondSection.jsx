@@ -1,5 +1,5 @@
 import '../../assets/secondSection.css'
-import {motion} from 'framer-motion'
+import {motion} from 'framer-motion' 
 
 import aboutOne from '../../images/about-one.JPEG'
 import aboutTwo from '../../images/about-two.JPEG'
@@ -90,7 +90,7 @@ const SecondSection = () => {
           />
           <motion.img src={aboutFour} 
             className='image-review image-review-four'  
-            lt="image for review section" 
+            alt="image for review section" 
             initial={{
               opacity: 0,
               y: -80,

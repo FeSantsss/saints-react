@@ -59,6 +59,7 @@ const PrimarySection = () => {
               image={project.image}
               content={project.content}
               
+              
             />
           ))}
         </div>

@@ -33,4 +33,7 @@
   width: 0;
 }
 
+img {
+  will-change: transform;
+}
 

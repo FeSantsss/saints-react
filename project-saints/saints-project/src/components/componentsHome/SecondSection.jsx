@@ -18,10 +18,10 @@ const SecondSection = () => {
       <section className="container-about">
 
         <motion.h3 className="about-text-h3"
-          initial={{opacity: 0}}
-          whileInView={{opacity: 1}}
-          transition={{duration: .5, ease: 'easeOut' }}
-          viewport={{once: true}}
+          initial={{opacity: 0, x: 30}}
+          whileInView={{opacity: 1, x: 0}}
+          transition={{duration: 1,ease: 'easeOut' }}
+          viewport={{once: false}}
         >
           <p>
             <strong>na Saints,</strong> <br />atuamos na construção intencional de imagem porque entendemos <br />que todo projeto nasce de posicionamento e clareza.

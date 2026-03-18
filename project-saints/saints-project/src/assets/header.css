@@ -18,7 +18,7 @@
 }
 
 header {
-  background-color: #fff;
+  background-color: #ffffff;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -33,6 +33,7 @@ header {
   align-items: center;
 
   background-color: #ffffff;
+  box-shadow: -1px 10px 50px 17px rgba(237, 237, 237, 0.237);
   margin: auto;
   max-width: 1990px;
   min-width: 320px; 

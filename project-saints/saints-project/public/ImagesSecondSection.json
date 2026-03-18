@@ -1,22 +1,22 @@
 [
   {
     "id": 1,
-    "image": "https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/about-one.JPEG",
+    "image": "https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/saints-webp/about-one.webp",
     "class": "image-review image-review-one"
   },
   {
     "id": 2,
-    "image": "https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/about-two.JPEG",
+    "image": "https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/saints-webp/about-two.webp",
     "class": "image-review image-review-two"
   },
   {
     "id": 3,
-    "image": "https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/about-three.JPEG",
+    "image": "https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/saints-webp/about-three.webp",
     "class": "image-review image-review-three"
   },
   {
     "id": 4,
-    "image": "https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/about-four.JPEG",
+    "image": "https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/saints-webp/about-four.webp",
     "class": "image-review image-review-four"
   }
 ]

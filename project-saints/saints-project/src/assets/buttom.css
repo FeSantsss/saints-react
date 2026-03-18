@@ -1,9 +1,9 @@
 .button-box-design{
-  padding: 2px 7px;
-  border-radius: 30px;
+  padding: 3.5px 7.5px;
+  border-radius: 12px;
 
   font-family: var(--font-primary);
-  font-size: var(--space-md);
+  font-size: 17px;
   font-weight: var(--font-semibold);
   margin-top: 18px;
   margin-bottom: var(--space-lg);

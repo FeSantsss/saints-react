@@ -1,17 +1,17 @@
 [
   {
     "id": 1,
-    "image": "https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/image-one.JPEG",
+    "image": "https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/saints-webp/image-one.webp",
     "content": "conteúdo para redes"
   },
   {
     "id": 2,
-    "image": "https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/image-two.JPEG",
+    "image": "https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/saints-webp/image-two.webp",
     "content": "cobertura de eventos"
   },
   {
     "id": 3,
-    "image": "https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/image-three.JPEG",
+    "image": "https://pub-29c79b56b9f44c2a80b005bc022bef94.r2.dev/saints-images/saints-photos/saints-webp/image-three.webp",
     "content": "campanhas corporativas"
   }
 ]

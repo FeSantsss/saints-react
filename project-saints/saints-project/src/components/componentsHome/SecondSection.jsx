@@ -16,8 +16,13 @@ const SecondSection = () => {
   return (
     <>
       <section className="container-about">
-        <h3 className="about-text-h3">
 
+        <motion.h3 className="about-text-h3"
+          initial={{opacity: 0}}
+          whileInView={{opacity: 1}}
+          transition={{duration: .5, ease: 'easeOut' }}
+          viewport={{once: true}}
+        >
           <p>
             <strong>na Saints,</strong> <br />atuamos na construção intencional de imagem porque entendemos <br />que todo projeto nasce de posicionamento e clareza.
           </p>
@@ -28,8 +33,7 @@ const SecondSection = () => {
             presença, 
             relevância.
           </p>
-          
-        </h3>
+        </motion.h3>
 
         <div className="images-review">
           {images.map((image) => (
@@ -41,8 +45,8 @@ const SecondSection = () => {
 
               initial={{
                 opacity: 0,
-                y: -80,
-                filter: "blur(10px)"
+                y: -50,
+                filter: "blur(20px)"
               }}
               whileInView={{
                 opacity: 1,
@@ -53,7 +57,7 @@ const SecondSection = () => {
                 duration: 1,
                 ease: "easeOut"
               }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               loading='lazy'
             />
           ))}

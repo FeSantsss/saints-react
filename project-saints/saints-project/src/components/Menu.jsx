@@ -2,6 +2,7 @@ import '../assets/header.css'
 import saintslogo from '../images/saints-logo.PNG'
 import saintsLogoHover from '../images/saints-logo-hover.PNG'
 import { useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const Menu = () => {
   const [isOpen, setOpen] = useState(false);
@@ -40,14 +41,20 @@ const Menu = () => {
             <div className={isOpen ? 'second-line active' : 'second-line'}></div>
           </div>
 
-        <nav className={isOpen ? 'nav-header-menu is-open' : 'nav-header-menu'}>
-
-          <a className="link-interno" href='#' rel="noopener noreferrer">início</a>
-          <a className="link-interno" href='#' rel="noopener noreferrer">projetos</a>
-          <a className="link-interno" href='#' rel="noopener noreferrer">serviços</a>
-          <a className="link-interno" href='#' rel="noopener noreferrer">sobre</a> 
-
-        </nav>
+        <AnimatePresence>
+          <motion.nav
+            className={isOpen ? 'nav-header-menu is-open' : 'nav-header-menu'}
+            initial={{opacity: 0, filter: "blur(20px)"}}
+            whileInView={{opacity: 1, filter: "blur(0px)"}}
+            transition={{duration: .5, ease: 'easeIn'}}
+            exit={{opacity: 0, filter: "blur(10px)"}}
+          >
+            <a className="link-interno" href='#' rel="noopener noreferrer">início</a>
+            <a className="link-interno" href='#' rel="noopener noreferrer">projetos</a>
+            <a className="link-interno" href='#' rel="noopener noreferrer">serviços</a>
+            <a className="link-interno" href='#' rel="noopener noreferrer">sobre</a>
+          </motion.nav>
+        </AnimatePresence>
 
       </section>
 

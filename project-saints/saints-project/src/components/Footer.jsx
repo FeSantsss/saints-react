@@ -6,7 +6,7 @@ const Footer = () => {
 
   const whatsappBtn = () => {
 
-    const numero = "5587996394734";
+    const numero = "558799742168";
 
     const texto = "Olá! Quero contratar um serviço Saints";
 

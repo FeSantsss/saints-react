@@ -189,7 +189,7 @@ export default function Chat() {
 
   const finalizar = () => {
 
-    const numero = "5587996394734";
+    const numero = "558799742168";
 
     let texto = "Olá! Quero contratar um serviço Saints:%0A";
     texto += `%0AServiço: ${fluxos[servico].title}%0A`;

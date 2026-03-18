@@ -30,6 +30,7 @@ const PrimarySection = () => {
               key={project.id}
               image={project.image}
               content={project.content}
+              
             />
           ))}
         </div>

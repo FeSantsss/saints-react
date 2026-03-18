@@ -1,4 +1,4 @@
-# Saints-films project 
+# SaintsFilms project 
 
 ## Site para a Saints Films, empresa profissional em produção audiovisual.
 
@@ -7,12 +7,13 @@ Seções construidas com o uso de tecnologias e conhecimento de ponta.
 
 ### Arquitetura do Projeto
 
-- Em processo de migração para estrutura React
-- Estrutura organizada por páginas e componentes React
-- Preparando para futura migração para SPA com React Router
+- Estrutura organizada por SPA e componentes React
+- Utilização de Framer Motion para animações
+- Preparando para futura migração com React Router
 
 ### Tecnologias
 - React JSX
+- Framer Motion
 - CSS 3
 - Vite
 

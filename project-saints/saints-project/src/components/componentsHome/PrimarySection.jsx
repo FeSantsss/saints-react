@@ -27,24 +27,9 @@ const PrimarySection = () => {
               nossos projetos
             </h2>
 
-            <motion.svg 
+            <svg 
               viewBox="0 0 200 200" 
-              className="circle"
-              initial={{
-                opacity: 0,
-                y: -50,
-                filter: "blur(20px)"
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-                filter: "blur(0px)"
-              }}
-              transition={{
-                duration: 1,
-                ease: "easeOut"
-              }}
-              viewport={{ once: false }}  
+              className="circle" 
             >
               <defs>
                 <path
@@ -61,7 +46,7 @@ const PrimarySection = () => {
                   TESTE • TESTE • TESTE • TESTE • TESTE • TESTE
                 </textPath>
               </text>
-            </motion.svg>
+            </svg>
 
           </div>
         </div>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import "../assets/footer-base.css"
 import instagramIcon from "../images/instagram.PNG"
 import telephoneIcon from "../images/telephone-call.PNG"
@@ -23,10 +24,18 @@ const Footer = () => {
 
         <div className="footer-contact-menu-center">
 
-          <a className="link-interno-footer" href='#' rel="noopener noreferrer">início</a>
-          <a className="link-interno-footer" href='#' rel="noopener noreferrer">projetos</a>
-          <a className="link-interno-footer" href='#' rel="noopener noreferrer">serviços</a>
-          <a className="link-interno-footer" href='#' rel="noopener noreferrer">sobre</a>
+          <Link className="link-interno-footer" to="/">
+            início
+          </Link>
+          <Link className="link-interno-footer" to="">
+            serviços
+          </Link>
+          <Link className="link-interno-footer" to="">
+            projetos
+          </Link>
+          <Link className="link-interno-footer" to="/about">
+            sobre
+          </Link>
 
           <div className="container-contact-footer">
 

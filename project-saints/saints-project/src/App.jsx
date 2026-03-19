@@ -1,11 +1,21 @@
+import { Outlet } from 'react-router-dom'
 import './App.css'
-import Home from './pages/Home'
+import Menu from './components/Menu'
+import Chat from './components/Chat'
+import Footer from './components/Footer'
+import ScrollBar from './components/ScrollBar'
 
 function App() {
 
   return (
     <>
-      <Home/>
+      <Menu/>
+      <ScrollBar/>
+      
+      <Outlet/>
+
+      <Chat/>
+      <Footer/>
     </>
   )
 }

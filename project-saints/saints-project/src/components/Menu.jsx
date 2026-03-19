@@ -3,6 +3,7 @@ import saintslogo from '../images/saints-logo.PNG'
 import saintsLogoHover from '../images/saints-logo-hover.PNG'
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const Menu = () => {
   const [isOpen, setOpen] = useState(false);
@@ -49,10 +50,18 @@ const Menu = () => {
             transition={{duration: .5, ease: 'easeIn'}}
             exit={{opacity: 0, filter: "blur(10px)"}}
           >
-            <a className="link-interno" href='#' rel="noopener noreferrer">início</a>
-            <a className="link-interno" href='#' rel="noopener noreferrer">projetos</a>
-            <a className="link-interno" href='#' rel="noopener noreferrer">serviços</a>
-            <a className="link-interno" href='#' rel="noopener noreferrer">sobre</a>
+            <Link className="link-interno" to="/" onClick={() => setOpen(false)}>
+              início
+            </Link>
+            <Link className="link-interno" to="" onClick={() => setOpen(false)}>
+              serviços
+            </Link>
+            <Link className="link-interno" to="" onClick={() => setOpen(false)}>
+              projetos
+            </Link>
+            <Link className="link-interno" to="/about" onClick={() => setOpen(false)}>
+              sobre
+            </Link>
           </motion.nav>
         </AnimatePresence>
 

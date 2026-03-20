@@ -1,0 +1,25 @@
+
+
+.div-error-page{
+  background-color: var(--white-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+.title-error-page{
+  font-size: clamp(80px, 7rem, 150px);
+  font-family: var(--font-primary);
+  margin-bottom: 10px;
+}
+.error-page-btn{
+  width: 150px;
+  height: 40px;
+  border-radius: 20px;
+}
+.about-error-page{
+  font-family: var(--font-primary);
+  font-size: 15px;
+  margin-bottom: 20px;
+}

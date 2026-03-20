@@ -3,7 +3,7 @@ import saintslogo from '../images/saints-logo.PNG'
 import saintsLogoHover from '../images/saints-logo-hover.PNG'
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const Menu = () => {
   const [isOpen, setOpen] = useState(false);
@@ -50,18 +50,18 @@ const Menu = () => {
             transition={{duration: .5, ease: 'easeIn'}}
             exit={{opacity: 0, filter: "blur(10px)"}}
           >
-            <Link className="link-interno" to="/" onClick={() => setOpen(false)}>
+            <NavLink className={({isActive}) => (isActive ? "link-interno active" : "link-interno")} to="/" onClick={() => setOpen(false)}>
               início
-            </Link>
-            <Link className="link-interno" to="" onClick={() => setOpen(false)}>
+            </NavLink>
+            <NavLink className={({isActive}) => (isActive ? "link-interno active" : "link-interno")} to="/serviços" onClick={() => setOpen(false)}>
               serviços
-            </Link>
-            <Link className="link-interno" to="" onClick={() => setOpen(false)}>
+            </NavLink>
+            <NavLink className={({isActive}) => (isActive ? "link-interno active" : "link-interno")} to="/projetos" onClick={() => setOpen(false)}>
               projetos
-            </Link>
-            <Link className="link-interno" to="/about" onClick={() => setOpen(false)}>
+            </NavLink>
+            <NavLink className={({isActive}) => (isActive ? "link-interno active" : "link-interno")} to="/about" onClick={() => setOpen(false)}>
               sobre
-            </Link>
+            </NavLink>
           </motion.nav>
         </AnimatePresence>
 

@@ -43,7 +43,7 @@ const PrimarySection = () => {
 
               <text>
                 <textPath href="#circlePath">
-                  TESTE • TESTE • TESTE • TESTE • TESTE • TESTE
+                  saints • saints • saints • saints • saints • saints •
                 </textPath>
               </text>
             </svg>

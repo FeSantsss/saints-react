@@ -27,10 +27,10 @@ const Footer = () => {
           <Link className="link-interno-footer" to="/">
             início
           </Link>
-          <Link className="link-interno-footer" to="">
+          <Link className="link-interno-footer" to="/serviços">
             serviços
           </Link>
-          <Link className="link-interno-footer" to="">
+          <Link className="link-interno-footer" to="/projetos">
             projetos
           </Link>
           <Link className="link-interno-footer" to="/about">

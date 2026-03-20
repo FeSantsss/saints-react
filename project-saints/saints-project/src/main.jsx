@@ -12,22 +12,14 @@ import About from './routes/About.jsx'
 
 const router = createBrowserRouter([
   {
-    path: '/', 
-    element: <App/>,
-    errorElement: <ErrorPage/>,
-    children: [
-      {
-        path: '/',
-        element: <Home/>,
-        errorElement: <ErrorPage/>
-      },
-      {
-        path: '/about',
-        element: <About/>,
-        errorElement: <ErrorPage/>
-      }
-    ]
-  }
+  path: '/', 
+  element: <App/>,
+  errorElement: <ErrorPage/>,
+  children: [
+    { index: true, element: <Home/> },
+    { path: 'about', element: <About/> }
+  ]
+}
 ]);
 
 createRoot(document.getElementById('root')).render(

@@ -12,7 +12,7 @@ function App() {
       <Menu/>
       <ScrollBar/>
       
-      <Outlet/>
+      <main><Outlet/></main>
 
       <Chat/>
       <Footer/>

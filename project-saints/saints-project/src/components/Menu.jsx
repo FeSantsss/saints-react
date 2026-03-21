@@ -59,7 +59,7 @@ const Menu = () => {
             <NavLink className={({isActive}) => (isActive ? "link-interno active" : "link-interno")} to="/projetos" onClick={() => setOpen(false)}>
               projetos
             </NavLink>
-            <NavLink className={({isActive}) => (isActive ? "link-interno active" : "link-interno")} to="/about" onClick={() => setOpen(false)}>
+            <NavLink className={({isActive}) => (isActive ? "link-interno active" : "link-interno")} to="/sobre" onClick={() => setOpen(false)}>
               sobre
             </NavLink>
           </motion.nav>

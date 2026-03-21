@@ -33,7 +33,7 @@ const Footer = () => {
           <Link className="link-interno-footer" to="/projetos">
             projetos
           </Link>
-          <Link className="link-interno-footer" to="/about">
+          <Link className="link-interno-footer" to="/sobre">
             sobre
           </Link>
 

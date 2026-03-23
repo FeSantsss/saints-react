@@ -39,11 +39,16 @@ const Footer = () => {
 
           <div className="container-contact-footer">
 
-            <a href="https://www.instagram.com/saintsfilmsbr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-              className="link-externo"><img src={instagramIcon} aria-label="Fale conosco pelo instagram!" alt="" className="icon-contact" /></a>
-            <img src={telephoneIcon} onClick={whatsappBtn} aria-label="Fale conosco pelo whatsapp!" alt="" className="icon-contact" />
-            <p className="location-p">Custódia, PE</p>
-            <p className="mail-p">saintsfilmsbr@gmail.com</p>
+            <div className="div-for-img">
+              <a href="https://www.instagram.com/saintsfilmsbr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                className="link-externo"><img src={instagramIcon} aria-label="Fale conosco pelo instagram!" alt="" className="icon-contact" /></a>
+              <img src={telephoneIcon} onClick={whatsappBtn} aria-label="Fale conosco pelo whatsapp!" alt="" className="icon-contact" />
+            </div>
+
+            <div className="div-for-mail-and-location">
+              <p className="mail-p">saintsfilmsbr@gmail.com</p>
+              <p className="location-p">Custódia, PE</p>
+            </div>
 
           </div>
 

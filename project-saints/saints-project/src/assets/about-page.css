@@ -12,11 +12,29 @@
   padding: 50px 20px;
   text-align: left;
   color: var(--black-main);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.image-about-page {
+  width: clamp(300px, 50vw, 750px);
+  align-self: center;
+  margin-top: 40px;
+  border-radius: 5px;
 }
 
 @media (min-width: 800px) {
   .text-about-page {
     max-width: 800px;
     font-size: clamp(1.3rem, 3vw, 1.8rem);
+  }
+  .section-about {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .image-about-page {
+    margin: 0 20px;
   }
 }

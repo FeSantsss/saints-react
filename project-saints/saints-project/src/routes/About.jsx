@@ -1,6 +1,15 @@
+import { useEffect, useState } from "react";
 import "../assets/about-page.css";
 
 const About = () => {
+  const [image, setImage] = useState([]);
+
+  useEffect(() => {
+    fetch("/imageAbout.json")
+      .then((res) => res.json())
+      .then((data) => setImage(data));
+  }, []);
+
   return (
     <>
       <title>Saints Films | Sobre</title>
@@ -25,6 +34,15 @@ const About = () => {
             transformar imagem em presença.
           </p>
         </h2>
+
+        {image.map((image, index) => (
+          <img
+            key={index}
+            src={image.image}
+            className={image.className}
+            alt="saints team image"
+          />
+        ))}
       </div>
     </>
   );

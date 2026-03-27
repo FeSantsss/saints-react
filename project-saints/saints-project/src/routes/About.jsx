@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+
 import "../assets/about-page.css";
 
 const About = () => {
@@ -13,7 +15,13 @@ const About = () => {
   return (
     <>
       <title>Saints Films | Sobre</title>
-      <div className="section-about">
+      <motion.div
+        className="section-about"
+        initial={{ opacity: 0, x: 30, filter: "blur(10px)" }}
+        whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        viewport={{ once: false }}
+      >
         <h2>
           <p className="title-about-page">somos a saints.</p>
           <p className="text-about-page">
@@ -43,7 +51,7 @@ const About = () => {
             alt="saints team image"
           />
         ))}
-      </div>
+      </motion.div>
     </>
   );
 };

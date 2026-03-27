@@ -1,8 +1,6 @@
 # SaintsFilms project 
 
-## Site para a Saints Films, empresa profissional em produção audiovisual.
-
-## Em Desenvolvimento!
+## Site para a Saints Films, empresa brasileira profissional em produção audiovisual.
 
 Esse dado projeto foi concebido para a empresa Saints Films, com o intuito e desejo de expandir o trabalho excepcional da empresa.
 Seções construidas com o uso de tecnologias e conhecimento de ponta.
@@ -24,6 +22,8 @@ Seções construidas com o uso de tecnologias e conhecimento de ponta.
 - React Router
 - Framer Motion
 - Vite
+
+### Em Desenvolvimento!
 
 ### Autor e Produtor:
 #### Felipy Santos - Developer (Full-Stack)  

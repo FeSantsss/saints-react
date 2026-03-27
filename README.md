@@ -80,16 +80,6 @@ Provide a high-quality institutional website to:
 
 ---
 
-## 📁 Project Structure (Simplified)
-
-```bash
-src/
- ├── components/
- ├── pages/
- ├── assets/
- └── App.jsx
-``
-
 ### Em Desenvolvimento!
 
 ### Autor e Produtor:
@@ -99,4 +89,7 @@ src/
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/FeSantsss/saints-react/blob/main/LICENSE) file for details.
+
+```
+
 ```

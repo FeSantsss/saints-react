@@ -1,0 +1,22 @@
+.text-about-page {
+  font-family: var(--font-libre-rich);
+  font-size: clamp(1.4rem, 3vw, 1.3rem);
+  margin: 20px 0;
+}
+.title-about-page {
+  font-family: var(--font-libre-rich);
+  font-size: clamp(1.7rem, 4vw, 3rem);
+  margin: 0px 0 clamp(20px, 1rem, 40px);
+}
+.section-about {
+  padding: 50px 20px;
+  text-align: left;
+  color: var(--black-main);
+}
+
+@media (min-width: 800px) {
+  .text-about-page {
+    max-width: 800px;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+  }
+}

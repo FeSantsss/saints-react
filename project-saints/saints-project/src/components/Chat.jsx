@@ -1,204 +1,232 @@
 import "../assets/chat.css";
-
-// ! Hooks principais do React
-// ? useState → controla estados internos do componente
-// ? useEffect → executa efeitos colaterais
-// ? useRef → cria referência para acessar elementos do DOM
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 
-
-// * ===============================
-// * DEFINIÇÃO DOS FLUXOS DE PERGUNTAS
-// * ===============================
-
-// ? Cada serviço contém um array de perguntas.
-// ? label → texto exibido pelo bot
-// ? name → identificador interno
-// ? type → tipo do campo
-// ? options → opções para select
+/*
+========================================
+DEFINIÇÃO DOS FLUXOS DO CHAT
+========================================
+Cada serviço possui:
+- title → nome exibido
+- perguntas → sequência de perguntas do bot
+*/
 const fluxos = {
   casamento: {
     title: "Casamento",
     perguntas: [
       { label: "Data do casamento:", name: "data", type: "date" },
-      { label: "Formato:", name: "formato", type: "select", options: ["Cerimônia", "Festa", "Ambos"] },
+      {
+        label: "Formato:",
+        name: "formato",
+        type: "select",
+        options: ["Cerimônia", "Festa", "Ambos"],
+      },
       { label: "Convidados:", name: "convidados", type: "number" },
-      { label: "Descreva brevemente:", name: "descricao", type: "textarea" }
-    ]
+      { label: "Descreva brevemente:", name: "descricao", type: "textarea" },
+    ],
   },
-
   reels: {
     title: "Reels para Redes Sociais",
     perguntas: [
       { label: "Nome da marca:", name: "marca", type: "text" },
-      { label: "Objetivo:", name: "objetivo", type: "select", options: ["Engajamento", "Vendas", "Autoridade"] },
+      {
+        label: "Objetivo:",
+        name: "objetivo",
+        type: "select",
+        options: ["Engajamento", "Vendas", "Autoridade"],
+      },
       { label: "Quantidade de vídeos:", name: "quantidade", type: "number" },
-      { label: "Descreva brevemente:", name: "descricao", type: "textarea" }
-    ]
+      { label: "Descreva brevemente:", name: "descricao", type: "textarea" },
+    ],
   },
-
   Aereo: {
     title: "Vídeo Aéreo",
     perguntas: [
       { label: "Local:", name: "local", type: "text" },
       { label: "Data:", name: "data", type: "date" },
-      { label: "Área:", name: "area", type: "select", options: ["Urbana", "Rural"] },
-      { label: "Descreva brevemente:", name: "descricao", type: "textarea" }
-    ]
+      {
+        label: "Área:",
+        name: "area",
+        type: "select",
+        options: ["Urbana", "Rural"],
+      },
+      { label: "Descreva brevemente:", name: "descricao", type: "textarea" },
+    ],
   },
   evento: {
     title: "Evento",
     perguntas: [
-      { label: "Tipo de evento:", name: "tipo", type: "select", options: ["Aniversário", "Formatura", "Corporativo", "Esportivo"] },
+      {
+        label: "Tipo de evento:",
+        name: "tipo",
+        type: "select",
+        options: ["Aniversário", "Formatura", "Corporativo", "Esportivo"],
+      },
       { label: "Data:", name: "data", type: "date" },
       { label: "Duração (horas):", name: "duracao", type: "number" },
-      { label: "Descreva brevemente:", name: "descricao", type: "textarea" }
-    ]
-  }
+      { label: "Descreva brevemente:", name: "descricao", type: "textarea" },
+    ],
+  },
 };
 
 export default function Chat() {
+  /*
+  ========================================
+  ESTADOS PRINCIPAIS
+  ========================================
+  */
+  const [active, setActive] = useState(false); // controla abertura do chat
+  const [servico, setServico] = useState(null); // serviço escolhido
+  const [passo, setPasso] = useState(0); // pergunta atual
+  const [respostas, setRespostas] = useState({}); // respostas do usuário
+  const [mensagens, setMensagens] = useState([]); // histórico visual
+  const [inputValue, setInputValue] = useState(""); // valor do input atual
 
-  // * ===============================
-  // * ESTADOS PRINCIPAIS
-  // * ===============================
+  const mensagensRef = useRef(null); // referência para scroll automático
 
-  // ! Controla se o chat está aberto ou fechado
-  const [active, setActive] = useState(false);
-
-  // ! Serviço selecionado pelo usuário
-  const [servico, setServico] = useState(null);
-
-  // ! Índice da pergunta atual dentro do fluxo
-  const [passo, setPasso] = useState(0);
-
-  // ! Armazena todas as respostas fornecidas
-  const [respostas, setRespostas] = useState({});
-
-  // ! Armazena todas as mensagens exibidas (bot + usuário)
-  const [mensagens, setMensagens] = useState([]);
-
-  // ! Controla valor atual do input
-  const [inputValue, setInputValue] = useState("");
-
-  // ! Referência para scroll automático
-  const mensagensRef = useRef(null);
-
-
-  // * ===============================
-  // * FUNÇÕES AUXILIARES
-  // * ===============================
-
-  // ? Alterna o estado do chat
-  const toggleMenu = () => setActive(prev => !prev);
-
-  // ? Adiciona mensagem do bot
-  const botMsg = (texto) => {
-    setMensagens(prev => [...prev, { tipo: "bot", texto }]);
+  /*
+  ========================================
+  RESET COMPLETO DO CHAT
+  ========================================
+  */
+  const resetChat = () => {
+    setServico(null);
+    setPasso(0);
+    setRespostas({});
+    setMensagens([]);
+    setInputValue("");
   };
 
-  // ? Adiciona mensagem do usuário
+  /*
+  ========================================
+  ABRIR / FECHAR CHAT
+  ========================================
+  */
+  const toggleMenu = () => {
+    if (active) {
+      resetChat(); // limpa tudo ao fechar
+    }
+    setActive((prev) => !prev);
+  };
+
+  /*
+  ========================================
+  BOT COM EFEITO DE DIGITAÇÃO
+  ========================================
+  */
+  const botMsg = async (texto) => {
+    // adiciona mensagem "digitando"
+    setMensagens((prev) => [...prev, { tipo: "bot", texto: "", typing: true }]);
+
+    // delay baseado no tamanho da mensagem (mais natural)
+    await new Promise((res) => setTimeout(res, 600 + texto.length * 10));
+
+    // substitui pela mensagem real
+    setMensagens((prev) => {
+      const copia = [...prev];
+      copia[copia.length - 1] = { tipo: "bot", texto };
+      return copia;
+    });
+  };
+
+  /*
+  ========================================
+  MENSAGEM DO USUÁRIO
+  ========================================
+  */
   const userMsg = (texto) => {
-    setMensagens(prev => [...prev, { tipo: "user", texto }]);
+    setMensagens((prev) => [...prev, { tipo: "user", texto }]);
   };
 
-  // ! formata a data 
+  /*
+  ========================================
+  CORREÇÃO DO BUG DE DATA (TIMEZONE)
+  ========================================
+  Problema:
+  - input date retorna "YYYY-MM-DD"
+  - new Date() converte para UTC → perde 1 dia
+
+  Solução:
+  - quebrar manualmente a string
+  - montar data local correta
+  */
   function formatarData(data) {
     if (!data) return "";
 
-    const d = new Date(data);
+    const [ano, mes, dia] = data.split("-");
 
-    return d.toLocaleDateString("pt-BR", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric"
-    });
+    return `${dia}/${mes}/${ano}`; // formato BR correto
   }
 
-
-  // * ===============================
-  // * SELEÇÃO DE SERVIÇO
-  // * ===============================
-
-  // ! Executado quando o usuário escolhe o serviço
+  /*
+  ========================================
+  SELEÇÃO DE SERVIÇO
+  ========================================
+  */
   function selecionarServico(valor) {
     setServico(valor);
-
-    // ? Capitaliza primeira letra
-    const formatado =
-      valor.charAt(0).toUpperCase() + valor.slice(1);
-
     userMsg(fluxos[valor].title);
-
-    // ! Reinicia fluxo
     setPasso(0);
   }
 
-
-  // * ===============================
-  // * CONTROLE DO FLUXO AUTOMÁTICO
-  // * ===============================
-
+  /*
+  ========================================
+  CONTROLE DO FLUXO AUTOMÁTICO
+  ========================================
+  */
   useEffect(() => {
+    if (!servico) return;
 
-    const perguntas = fluxos[servico]?.perguntas;
+    const perguntas = fluxos[servico].perguntas;
 
-    if (servico && passo < perguntas.length) {
-      const pergunta = perguntas[passo];
-      botMsg(pergunta.label);
-    }
-
-    if (servico && passo === perguntas.length) {
+    if (passo < perguntas.length) {
+      botMsg(perguntas[passo].label);
+    } else {
       finalizar();
     }
-
   }, [passo, servico]);
 
-
-  // * ===============================
-  // * ENVIO DE RESPOSTA
-  // * ===============================
-
+  /*
+  ========================================
+  ENVIO DE RESPOSTA
+  ========================================
+  */
   const enviarResposta = () => {
-
     if (!servico) return;
 
     const pergunta = fluxos[servico]?.perguntas?.[passo];
 
-    // ! Validação básica
+    // validação básica
     if (!pergunta || !inputValue.trim()) return;
 
-    // ? Salva resposta
-    setRespostas(prev => ({
+    // salva resposta
+    setRespostas((prev) => ({
       ...prev,
-      [pergunta.label]: inputValue
+      [pergunta.label]: inputValue,
     }));
 
     userMsg(inputValue);
-
     setInputValue("");
 
-    // ! Avança fluxo
-    setPasso(prev => prev + 1);
+    // avança fluxo
+    setPasso((prev) => prev + 1);
   };
 
-
-  // * ===============================
-  // * FINALIZAÇÃO (WHATSAPP)
-  // * ===============================
-
+  /*
+  ========================================
+  FINALIZAÇÃO (ENVIO PARA WHATSAPP)
+  ========================================
+  */
   const finalizar = () => {
-
     const numero = "558799742168";
 
     let texto = "Olá! Quero contratar um serviço Saints:%0A";
     texto += `%0AServiço: ${fluxos[servico].title}%0A`;
 
     for (const k in respostas) {
-
       let valor = respostas[k];
 
-      // se for campo de data, formata
+      // corrige datas
       if (k.toLowerCase().includes("data")) {
         valor = formatarData(valor);
       }
@@ -206,52 +234,53 @@ export default function Chat() {
       texto += `${k} ${valor}%0A`;
     }
 
-    // ! Redirecionamento externo
     window.open(`https://wa.me/${numero}?text=${texto}`, "_blank");
   };
 
-
-  // * ===============================
-  // * MENSAGENS INICIAIS
-  // * ===============================
-
+  /*
+  ========================================
+  MENSAGENS INICIAIS
+  ========================================
+  */
   useEffect(() => {
-    if (active && mensagens.length === 0) {
-      botMsg("Olá! Bem-vindo ao atendimento Saints.");
+    if (!active) return;
 
-      setTimeout(() => {
-        botMsg("Qual serviço você deseja contratar?");
-      }, 600);
-    }
+    const start = async () => {
+      await botMsg("Olá! Bem-vindo ao atendimento Saints.");
+      await botMsg("Qual serviço você deseja contratar?");
+    };
+
+    start();
   }, [active]);
 
-
-  // * ===============================
-  // * SCROLL AUTOMÁTICO
-  // * ===============================
-
+  /*
+  ========================================
+  SCROLL AUTOMÁTICO
+  ========================================
+  */
   useEffect(() => {
     mensagensRef.current?.scrollTo({
       top: mensagensRef.current.scrollHeight,
-      behavior: "smooth"
+      behavior: "smooth",
     });
   }, [mensagens]);
 
-
-  // * ===============================
-  // * RENDER DINÂMICO DE INPUT
-  // * ===============================
-
+  /*
+  ========================================
+  RENDER DINÂMICO DE INPUT
+  ========================================
+  */
   const renderInput = () => {
-
     const campo = fluxos[servico]?.perguntas?.[passo];
 
     if (!campo) return null;
 
-    // ? Select
     if (campo.type === "select") {
       return (
-        <select value={inputValue} onChange={(e) => setInputValue(e.target.value)}>
+        <select
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        >
           <option value="">Selecione</option>
           {campo.options.map((opt) => (
             <option key={opt} value={opt}>
@@ -262,7 +291,6 @@ export default function Chat() {
       );
     }
 
-    // ? Textarea
     if (campo.type === "textarea") {
       return (
         <textarea
@@ -272,7 +300,6 @@ export default function Chat() {
       );
     }
 
-    // ? Input padrão
     return (
       <input
         type={campo.type}
@@ -282,68 +309,95 @@ export default function Chat() {
     );
   };
 
-
-  // * ===============================
-  // * JSX
-  // * ===============================
-
+  /*
+  ========================================
+  JSX (INTERFACE)
+  ========================================
+  */
   return (
     <>
-      {/* ! Botão fixo que abre o chat */}
-      <button className="chat-toggle" onClick={toggleMenu}>
+      {/* BOTÃO FLUTUANTE */}
+      <motion.button
+        className="chat-toggle"
+        onClick={toggleMenu}
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.92 }}
+        animate={{ y: [0, -5, 0] }}
+        transition={{ y: { repeat: Infinity, duration: 2 } }}
+      >
         <p className="p-in-chat-toggle">Agende seu projeto</p>
-      </button>
+      </motion.button>
 
-      {/* ! Container principal */}
-      <div className={active ? "chat-atendimento open" : "chat-atendimento"}>
-
-        {/* * Header */}
-        <div className="chat-header">
-          <span className="span-in-chat">Saints Atendimento</span>
-
-          <div className="chat-actions">
-            {/* ! Reset completo */}
-            <button onClick={() => {window.location.reload()}}>↺</button>
-
-            {/* ! Fecha chat */}
-            <button onClick={toggleMenu}>✕</button>
-          </div>
-        </div>
-
-        {/* Área de mensagens */}
-        <div className="mensagens" ref={mensagensRef}>
-          {mensagens.map((m, i) => (
-            <div key={i} className={`msg ${m.tipo}`}>
-              {m.texto}
+      {/* CHAT */}
+      <AnimatePresence mode="wait">
+        {active && (
+          <motion.div
+            key="chat"
+            className="chat-atendimento open"
+            initial={{ opacity: 0, y: 80, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 60, scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 220, damping: 20 }}
+          >
+            {/* HEADER */}
+            <div className="chat-header">
+              <span className="span-in-chat">Saints Atendimento</span>
+              <div className="chat-actions">
+                <button
+                  onClick={() => {
+                    window.location.reload();
+                  }}
+                >
+                  ↺
+                </button>
+                <button onClick={toggleMenu}>✕</button>
+              </div>
             </div>
-          ))}
-        </div>
 
-        {/* Área de input */}
-        <div className="input-area">
+            {/* MENSAGENS */}
+            <div className="mensagens" ref={mensagensRef}>
+              <AnimatePresence>
+                {mensagens.map((m, i) => (
+                  <motion.div
+                    key={i}
+                    className={`msg ${m.tipo}`}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    {m.typing ? "..." : m.texto}
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
 
-          {!servico ? (
-
-            <select onChange={(e) => selecionarServico(e.target.value)}>
-              <option value="">Selecione</option>
-              {Object.entries(fluxos).map(([key, fluxo]) => (
-                <option key={key} value={key}>
-                  {fluxo.title}
-                </option>
-              ))}
-            </select>
-
-          ) : passo < fluxos[servico].perguntas.length ? (
-
-            <>
-              {renderInput()}
-              <button onClick={enviarResposta}>Enviar</button>
-            </>
-
-          ) : null}
-
-        </div>
-      </div>
+            {/* INPUT */}
+            <div className="input-area">
+              {!servico ? (
+                <select onChange={(e) => selecionarServico(e.target.value)}>
+                  <option value="">Selecione</option>
+                  {Object.entries(fluxos).map(([key, fluxo]) => (
+                    <option key={key} value={key}>
+                      {fluxo.title}
+                    </option>
+                  ))}
+                </select>
+              ) : passo < fluxos[servico].perguntas.length ? (
+                <>
+                  {renderInput()}
+                  <motion.button
+                    onClick={enviarResposta}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    Enviar
+                  </motion.button>
+                </>
+              ) : null}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

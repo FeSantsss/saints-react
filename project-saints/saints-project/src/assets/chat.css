@@ -29,21 +29,7 @@
 }
 
 .chat-atendimento.open {
-  animation: chatAnimationOpen 0.9s forwards;
   display: flex;
-}
-
-@keyframes chatAnimationOpen {
-  from {
-    scale: 5%;
-    translate: 60% 50%;
-    opacity: 0;
-  }
-  to {
-    scale: 100%;
-    translate: 0% 0%;
-    opacity: 1;
-  }
 }
 
 .span-in-chat {
@@ -63,10 +49,10 @@
   height: 60px;
 }
 
-.chat-header::before{
+.chat-header::before {
   background-image: url(/saints-logo.png);
   background-size: 26px;
-  content: "";  
+  content: "";
   width: 26px;
   height: 26px;
   border-radius: 10px;
@@ -140,8 +126,6 @@
   resize: none;
 }
 
-
-
 .input-area button {
   background: #000;
   color: #fff;
@@ -172,7 +156,7 @@
   transition: 0.5s;
 }
 
-@media(min-width: 1100px){
+@media (min-width: 1100px) {
   .chat-toggle {
     position: fixed;
     bottom: 20px;
@@ -199,4 +183,40 @@
   content: url(../images/chat-4-24.png);
   margin-right: 10px;
   vertical-align: middle;
+}
+
+/* ===============================
+   ANIMAÇÃO ORIGEM (ESSENCIAL)
+=============================== */
+.chat-atendimento {
+  transform-origin: bottom right;
+}
+
+/* ===============================
+   EFEITO "DIGITANDO..."
+=============================== */
+.msg.bot.typing {
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.msg.bot.typing::after {
+  content: "";
+  animation: dots 1.5s infinite;
+  margin-left: 4px;
+}
+
+@keyframes dots {
+  0% {
+    content: "";
+  }
+  33% {
+    content: ".";
+  }
+  66% {
+    content: "..";
+  }
+  100% {
+    content: "...";
+  }
 }

@@ -5,9 +5,8 @@ import Footer from "./components/Footer";
 import ScrollBar from "./components/ScrollBar";
 
 import { AnimatePresence, motion } from "framer-motion";
-import React, { Suspense } from "react";
 
-const Chat = React.lazy(() => import("./components/Chat"));
+import Chat from "./components/Chat";
 
 function App() {
   const location = useLocation();
@@ -31,10 +30,7 @@ function App() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Chat só carrega quando necessário */}
-      <Suspense fallback={null}>
-        <Chat />
-      </Suspense>
+      <Chat />
 
       <Footer />
     </>

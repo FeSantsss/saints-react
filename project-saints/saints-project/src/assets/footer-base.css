@@ -16,7 +16,7 @@ footer {
   overflow-x: hidden;
 }
 
-.container-contact-footer{
+.container-contact-footer {
   margin-top: 40px;
   display: flex;
   flex-direction: row-reverse;
@@ -25,7 +25,7 @@ footer {
   padding: 0 20px;
 }
 
-.footer-contact-menu-center{
+.footer-contact-menu-center {
   text-align: center;
   padding: 30px 0 10px;
 }
@@ -46,7 +46,7 @@ footer {
   height: 2px;
   background-color: var(--gray-line);
   margin: 0;
-  padding: .3px 0;
+  padding: 0.3px 0;
 }
 
 a,
@@ -70,7 +70,7 @@ button {
   transition-behavior: smooth;
 }
 
-.link-interno-footer{
+.link-interno-footer {
   font-family: var(--font-primary);
   text-decoration: none;
   color: var(--black-deep);
@@ -79,7 +79,7 @@ button {
   font-size: clamp(1rem, 1.1vw, 1.1rem);
   transition: 0.5s;
   transition-behavior: smooth;
-  cursor: pointer; 
+  cursor: pointer;
 }
 .link-interno-footer:hover {
   color: rgb(157, 154, 154);
@@ -107,7 +107,7 @@ button {
 }
 
 .mail-p,
-.location-p{
+.location-p {
   font-size: clamp(0.7rem, 4.2vw, 1rem);
   font-family: var(--font-primary);
   font-weight: 200;
@@ -117,8 +117,17 @@ button {
   text-align: left;
 }
 
-.mail-p:hover{
+.mail-p:hover {
   color: var(--gray-disabled);
   transition: 0.5s;
   transition-behavior: smooth;
+}
+
+@media (max-width: 340px) {
+  .icon-contact {
+    width: 25px;
+  }
+  .link-interno-footer {
+    font-size: 0.9rem;
+  }
 }

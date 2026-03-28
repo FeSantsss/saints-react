@@ -1,11 +1,12 @@
 .text-about-page {
   font-family: var(--font-libre-rich);
-  font-size: clamp(1.4rem, 3vw, 1.3rem);
+  font-size: clamp(1.2rem, 3vw, 1.3rem);
   margin: 20px 0;
+  font-weight: 200;
 }
 .title-about-page {
   font-family: var(--font-libre-rich);
-  font-size: clamp(1.7rem, 4vw, 3rem);
+  font-size: clamp(2.4rem, 4vw, 3rem);
   margin: 0px 0 clamp(20px, 1rem, 40px);
 }
 .section-about {
@@ -18,7 +19,7 @@
 }
 
 .image-about-page {
-  width: clamp(300px, 50vw, 750px);
+  width: clamp(300px, 55vw, 750px);
   align-self: center;
   margin-top: 40px;
   border-radius: 5px;
@@ -38,5 +39,11 @@
   }
   .image-about-page {
     margin: 0 20px;
+  }
+}
+
+@media (max-width: 340px) {
+  .title-about-page {
+    font-size: 2rem;
   }
 }

@@ -1,4 +1,4 @@
-.container-about{
+.container-about {
   height: fit-content;
   background-color: var(--black-main);
   color: var(--white-main);
@@ -12,17 +12,17 @@
   padding: 20px 35px 40px;
 }
 
-.about-text-h3{
+.about-text-h3 {
   font-size: 21px;
   font-weight: 100;
   padding: 15px 0;
 }
 
-strong{
+strong {
   font-weight: 800;
-} 
+}
 
-.images-review{
+.images-review {
   padding-top: 90px;
   display: flex;
   flex-direction: column;
@@ -30,36 +30,42 @@ strong{
   justify-content: center;
 }
 
-@media(min-width: 1100px){
-  .images-review{
+@media (min-width: 1100px) {
+  .images-review {
     padding: 90px 70px 0;
   }
 }
-@media(min-width: 1540px){
-  .images-review{
+@media (min-width: 1540px) {
+  .images-review {
     flex-direction: row;
     flex-wrap: wrap;
     flex-shrink: 1;
   }
 }
 
-.image-review-one{
+.image-review-one {
   width: clamp(280px, 45vw, 650px);
   align-self: flex-start;
 }
 
-.image-review-two{
+.image-review-two {
   width: clamp(210px, 40vw, 550px);
   align-self: flex-end;
-  
 }
 
-.image-review-three{
+.image-review-three {
   width: clamp(210px, 40vw, 550px);
   align-self: flex-start;
 }
 
-.image-review-four{
+.image-review-four {
   width: clamp(280px, 45vw, 650px);
   align-self: flex-end;
+}
+
+@media (max-width: 340px) {
+  .image-review-one,
+  .image-review-four {
+    width: 270px;
+  }
 }

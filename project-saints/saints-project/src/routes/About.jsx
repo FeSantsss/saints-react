@@ -17,10 +17,9 @@ const About = () => {
       <title>Saints Films | Sobre</title>
       <motion.div
         className="section-about"
-        initial={{ opacity: 0, x: 30, filter: "blur(10px)" }}
-        whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        viewport={{ once: false }}
+        initial={{ opacity: 0, filter: "blur(10px)" }}
+        animate={{ opacity: 1, filter: "blur(0px)" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <h2>
           <p className="title-about-page">somos a saints.</p>

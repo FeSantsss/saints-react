@@ -6,5 +6,8 @@ body {
   padding: 0;
 }
 
-
-
+main {
+  max-width: 1990px;
+  min-width: 320px;
+  margin: auto;
+}

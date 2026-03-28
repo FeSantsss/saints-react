@@ -323,9 +323,9 @@ export default function Chat() {
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.92 }}
         animate={{ y: [0, -5, 0] }}
-        transition={{ y: { repeat: Infinity, duration: 2 } }}
+        transition={{ y: { repeat: Infinity, duration: 2.5 } }}
       >
-        <p className="p-in-chat-toggle">Agende seu projeto</p>
+        <p className="p-in-chat-toggle">atendimento</p>
       </motion.button>
 
       {/* CHAT */}

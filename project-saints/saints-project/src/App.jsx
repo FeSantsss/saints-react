@@ -1,11 +1,13 @@
 import { Outlet, useLocation } from "react-router-dom";
 import "./App.css";
 import Menu from "./components/Menu";
-import Chat from "./components/Chat";
 import Footer from "./components/Footer";
 import ScrollBar from "./components/ScrollBar";
 
 import { AnimatePresence, motion } from "framer-motion";
+import React, { Suspense } from "react";
+
+const Chat = React.lazy(() => import("./components/Chat"));
 
 function App() {
   const location = useLocation();
@@ -14,6 +16,7 @@ function App() {
     <>
       <Menu />
       <ScrollBar />
+
       <AnimatePresence mode="wait">
         <motion.div
           key={location.pathname}
@@ -27,7 +30,12 @@ function App() {
           </main>
         </motion.div>
       </AnimatePresence>
-      <Chat />
+
+      {/* Chat só carrega quando necessário */}
+      <Suspense fallback={null}>
+        <Chat />
+      </Suspense>
+
       <Footer />
     </>
   );

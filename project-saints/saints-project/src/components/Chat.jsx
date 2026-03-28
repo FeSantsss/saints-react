@@ -75,14 +75,14 @@ export default function Chat() {
   ESTADOS PRINCIPAIS
   ========================================
   */
-  const [active, setActive] = useState(false); // controla abertura do chat
-  const [servico, setServico] = useState(null); // serviço escolhido
-  const [passo, setPasso] = useState(0); // pergunta atual
-  const [respostas, setRespostas] = useState({}); // respostas do usuário
-  const [mensagens, setMensagens] = useState([]); // histórico visual
-  const [inputValue, setInputValue] = useState(""); // valor do input atual
+  const [active, setActive] = useState(false);
+  const [servico, setServico] = useState(null);
+  const [passo, setPasso] = useState(0);
+  const [respostas, setRespostas] = useState({});
+  const [mensagens, setMensagens] = useState([]);
+  const [inputValue, setInputValue] = useState("");
 
-  const mensagensRef = useRef(null); // referência para scroll automático
+  const mensagensRef = useRef(null);
 
   /*
   ========================================
@@ -103,30 +103,18 @@ export default function Chat() {
   ========================================
   */
   const toggleMenu = () => {
-    if (active) {
-      resetChat(); // limpa tudo ao fechar
-    }
+    if (active) resetChat();
     setActive((prev) => !prev);
   };
 
   /*
   ========================================
-  BOT COM EFEITO DE DIGITAÇÃO
+  BOT (SIMPLIFICADO - 1 RENDER)
   ========================================
+  Remove delay e múltiplos renders → muito mais leve
   */
-  const botMsg = async (texto) => {
-    // adiciona mensagem "digitando"
-    setMensagens((prev) => [...prev, { tipo: "bot", texto: "", typing: true }]);
-
-    // delay baseado no tamanho da mensagem (mais natural)
-    await new Promise((res) => setTimeout(res, 600 + texto.length * 10));
-
-    // substitui pela mensagem real
-    setMensagens((prev) => {
-      const copia = [...prev];
-      copia[copia.length - 1] = { tipo: "bot", texto };
-      return copia;
-    });
+  const botMsg = (texto) => {
+    setMensagens((prev) => [...prev, { tipo: "bot", texto }]);
   };
 
   /*
@@ -142,20 +130,11 @@ export default function Chat() {
   ========================================
   CORREÇÃO DO BUG DE DATA (TIMEZONE)
   ========================================
-  Problema:
-  - input date retorna "YYYY-MM-DD"
-  - new Date() converte para UTC → perde 1 dia
-
-  Solução:
-  - quebrar manualmente a string
-  - montar data local correta
   */
   function formatarData(data) {
     if (!data) return "";
-
     const [ano, mes, dia] = data.split("-");
-
-    return `${dia}/${mes}/${ano}`; // formato BR correto
+    return `${dia}/${mes}/${ano}`;
   }
 
   /*
@@ -195,11 +174,8 @@ export default function Chat() {
     if (!servico) return;
 
     const pergunta = fluxos[servico]?.perguntas?.[passo];
-
-    // validação básica
     if (!pergunta || !inputValue.trim()) return;
 
-    // salva resposta
     setRespostas((prev) => ({
       ...prev,
       [pergunta.label]: inputValue,
@@ -207,14 +183,12 @@ export default function Chat() {
 
     userMsg(inputValue);
     setInputValue("");
-
-    // avança fluxo
     setPasso((prev) => prev + 1);
   };
 
   /*
   ========================================
-  FINALIZAÇÃO (ENVIO PARA WHATSAPP)
+  FINALIZAÇÃO (WHATSAPP)
   ========================================
   */
   const finalizar = () => {
@@ -225,12 +199,9 @@ export default function Chat() {
 
     for (const k in respostas) {
       let valor = respostas[k];
-
-      // corrige datas
       if (k.toLowerCase().includes("data")) {
         valor = formatarData(valor);
       }
-
       texto += `${k} ${valor}%0A`;
     }
 
@@ -245,12 +216,8 @@ export default function Chat() {
   useEffect(() => {
     if (!active) return;
 
-    const start = async () => {
-      await botMsg("Olá! Bem-vindo ao atendimento Saints.");
-      await botMsg("Qual serviço você deseja contratar?");
-    };
-
-    start();
+    botMsg("Olá! Bem-vindo ao atendimento Saints.");
+    botMsg("Qual serviço você deseja contratar?");
   }, [active]);
 
   /*
@@ -272,7 +239,6 @@ export default function Chat() {
   */
   const renderInput = () => {
     const campo = fluxos[servico]?.perguntas?.[passo];
-
     if (!campo) return null;
 
     if (campo.type === "select") {
@@ -316,28 +282,26 @@ export default function Chat() {
   */
   return (
     <>
-      {/* BOTÃO FLUTUANTE */}
+      {/* BOTÃO FLUTUANTE (leve, sem animação infinita) */}
       <motion.button
         className="chat-toggle"
         onClick={toggleMenu}
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.92 }}
-        animate={{ y: [0, -5, 0] }}
-        transition={{ y: { repeat: Infinity, duration: 2.5 } }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
         <p className="p-in-chat-toggle">atendimento</p>
       </motion.button>
 
       {/* CHAT */}
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         {active && (
           <motion.div
             key="chat"
             className="chat-atendimento open"
-            initial={{ opacity: 0, y: 80, scale: 0.8 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 60, scale: 0.9 }}
-            transition={{ type: "spring", stiffness: 220, damping: 20 }}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.25 }}
           >
             {/* HEADER */}
             <div className="chat-header">
@@ -354,22 +318,13 @@ export default function Chat() {
               </div>
             </div>
 
-            {/* MENSAGENS */}
+            {/* MENSAGENS (SEM ANIMAÇÃO → MUITO MAIS LEVE) */}
             <div className="mensagens" ref={mensagensRef}>
-              <AnimatePresence>
-                {mensagens.map((m, i) => (
-                  <motion.div
-                    key={i}
-                    className={`msg ${m.tipo}`}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.25 }}
-                  >
-                    {m.typing ? "..." : m.texto}
-                  </motion.div>
-                ))}
-              </AnimatePresence>
+              {mensagens.map((m, i) => (
+                <div key={i} className={`msg ${m.tipo}`}>
+                  {m.texto}
+                </div>
+              ))}
             </div>
 
             {/* INPUT */}
@@ -386,12 +341,7 @@ export default function Chat() {
               ) : passo < fluxos[servico].perguntas.length ? (
                 <>
                   {renderInput()}
-                  <motion.button
-                    onClick={enviarResposta}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    Enviar
-                  </motion.button>
+                  <button onClick={enviarResposta}>Enviar</button>
                 </>
               ) : null}
             </div>

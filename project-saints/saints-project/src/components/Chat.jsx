@@ -1,14 +1,21 @@
 import "../assets/chat.css";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback, memo } from "react";
 
 /*
 ========================================
-DEFINIÇÃO DOS FLUXOS DO CHAT
+COMPONENTE DE MENSAGEM (MEMOIZADO)
 ========================================
-Cada serviço possui:
-- title → nome exibido
-- perguntas → sequência de perguntas do bot
+Evita re-render desnecessário
+*/
+const Message = memo(({ tipo, texto }) => {
+  return <div className={`msg ${tipo}`}>{texto}</div>;
+});
+
+/*
+========================================
+FLUXOS
+========================================
 */
 const fluxos = {
   casamento: {
@@ -68,11 +75,15 @@ const fluxos = {
     ],
   },
 };
-
+/*
+========================================
+COMPONENTE PRINCIPAL
+========================================
+*/
 export default function Chat() {
   /*
   ========================================
-  ESTADOS PRINCIPAIS
+  ESTADOS
   ========================================
   */
   const [active, setActive] = useState(false);
@@ -80,55 +91,48 @@ export default function Chat() {
   const [passo, setPasso] = useState(0);
   const [respostas, setRespostas] = useState({});
   const [mensagens, setMensagens] = useState([]);
-  const [inputValue, setInputValue] = useState("");
 
   const mensagensRef = useRef(null);
+  const inputRef = useRef(null);
 
   /*
   ========================================
-  RESET COMPLETO DO CHAT
+  RESET
   ========================================
   */
-  const resetChat = () => {
+  const resetChat = useCallback(() => {
     setServico(null);
     setPasso(0);
     setRespostas({});
     setMensagens([]);
-    setInputValue("");
-  };
+  }, []);
 
   /*
   ========================================
-  ABRIR / FECHAR CHAT
+  TOGGLE
   ========================================
   */
-  const toggleMenu = () => {
+  const toggleMenu = useCallback(() => {
     if (active) resetChat();
     setActive((prev) => !prev);
-  };
+  }, [active, resetChat]);
 
   /*
   ========================================
-  BOT (SIMPLIFICADO - 1 RENDER)
+  BOT / USER (MEMO)
   ========================================
-  Remove delay e múltiplos renders → muito mais leve
   */
-  const botMsg = (texto) => {
+  const botMsg = useCallback((texto) => {
     setMensagens((prev) => [...prev, { tipo: "bot", texto }]);
-  };
+  }, []);
 
-  /*
-  ========================================
-  MENSAGEM DO USUÁRIO
-  ========================================
-  */
-  const userMsg = (texto) => {
+  const userMsg = useCallback((texto) => {
     setMensagens((prev) => [...prev, { tipo: "user", texto }]);
-  };
+  }, []);
 
   /*
   ========================================
-  CORREÇÃO DO BUG DE DATA (TIMEZONE)
+  DATA FIX
   ========================================
   */
   function formatarData(data) {
@@ -139,18 +143,21 @@ export default function Chat() {
 
   /*
   ========================================
-  SELEÇÃO DE SERVIÇO
+  SERVIÇO
   ========================================
   */
-  function selecionarServico(valor) {
-    setServico(valor);
-    userMsg(fluxos[valor].title);
-    setPasso(0);
-  }
+  const selecionarServico = useCallback(
+    (valor) => {
+      setServico(valor);
+      userMsg(fluxos[valor].title);
+      setPasso(0);
+    },
+    [userMsg],
+  );
 
   /*
   ========================================
-  CONTROLE DO FLUXO AUTOMÁTICO
+  FLUXO
   ========================================
   */
   useEffect(() => {
@@ -163,35 +170,38 @@ export default function Chat() {
     } else {
       finalizar();
     }
-  }, [passo, servico]);
+  }, [passo, servico, botMsg]);
 
   /*
   ========================================
-  ENVIO DE RESPOSTA
+  ENVIAR
   ========================================
   */
-  const enviarResposta = () => {
+  const enviarResposta = useCallback(() => {
     if (!servico) return;
 
+    const valor = inputRef.current?.value;
+    if (!valor) return;
+
     const pergunta = fluxos[servico]?.perguntas?.[passo];
-    if (!pergunta || !inputValue.trim()) return;
 
     setRespostas((prev) => ({
       ...prev,
-      [pergunta.label]: inputValue,
+      [pergunta.label]: valor,
     }));
 
-    userMsg(inputValue);
-    setInputValue("");
+    userMsg(valor);
+    inputRef.current.value = "";
+
     setPasso((prev) => prev + 1);
-  };
+  }, [servico, passo, userMsg]);
 
   /*
   ========================================
-  FINALIZAÇÃO (WHATSAPP)
+  FINAL
   ========================================
   */
-  const finalizar = () => {
+  const finalizar = useCallback(() => {
     const numero = "558799742168";
 
     let texto = "Olá! Quero contratar um serviço Saints:%0A";
@@ -206,11 +216,11 @@ export default function Chat() {
     }
 
     window.open(`https://wa.me/${numero}?text=${texto}`, "_blank");
-  };
+  }, [respostas, servico]);
 
   /*
   ========================================
-  MENSAGENS INICIAIS
+  INIT
   ========================================
   */
   useEffect(() => {
@@ -218,11 +228,11 @@ export default function Chat() {
 
     botMsg("Olá! Bem-vindo ao atendimento Saints.");
     botMsg("Qual serviço você deseja contratar?");
-  }, [active]);
+  }, [active, botMsg]);
 
   /*
   ========================================
-  SCROLL AUTOMÁTICO
+  SCROLL
   ========================================
   */
   useEffect(() => {
@@ -234,7 +244,7 @@ export default function Chat() {
 
   /*
   ========================================
-  RENDER DINÂMICO DE INPUT
+  INPUT
   ========================================
   */
   const renderInput = () => {
@@ -243,10 +253,7 @@ export default function Chat() {
 
     if (campo.type === "select") {
       return (
-        <select
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        >
+        <select ref={inputRef}>
           <option value="">Selecione</option>
           {campo.options.map((opt) => (
             <option key={opt} value={opt}>
@@ -258,31 +265,20 @@ export default function Chat() {
     }
 
     if (campo.type === "textarea") {
-      return (
-        <textarea
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-      );
+      return <textarea ref={inputRef} />;
     }
 
-    return (
-      <input
-        type={campo.type}
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-      />
-    );
+    return <input type={campo.type} ref={inputRef} />;
   };
 
   /*
   ========================================
-  JSX (INTERFACE)
+  JSX
   ========================================
   */
   return (
     <>
-      {/* BOTÃO FLUTUANTE (leve, sem animação infinita) */}
+      {/* BOTÃO */}
       <motion.button
         className="chat-toggle"
         onClick={toggleMenu}
@@ -307,23 +303,15 @@ export default function Chat() {
             <div className="chat-header">
               <span className="span-in-chat">Saints Atendimento</span>
               <div className="chat-actions">
-                <button
-                  onClick={() => {
-                    window.location.reload();
-                  }}
-                >
-                  ↺
-                </button>
+                <button onClick={() => window.location.reload()}>↺</button>
                 <button onClick={toggleMenu}>✕</button>
               </div>
             </div>
 
-            {/* MENSAGENS (SEM ANIMAÇÃO → MUITO MAIS LEVE) */}
+            {/* MENSAGENS */}
             <div className="mensagens" ref={mensagensRef}>
               {mensagens.map((m, i) => (
-                <div key={i} className={`msg ${m.tipo}`}>
-                  {m.texto}
-                </div>
+                <Message key={i} tipo={m.tipo} texto={m.texto} />
               ))}
             </div>
 

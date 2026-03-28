@@ -1,27 +1,26 @@
-import '../../assets/hero.css'
+import "../../assets/hero.css";
 
-import {motion} from 'framer-motion'
+import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
     <>
       <section className="hero-container">
-
-        <motion.h1 
+        <motion.h1
           className="slogan-text"
           initial={{
             opacity: 0,
-            x: -40,
-            filter: "blur(70px)"
+            x: -20,
+            filter: "blur(10px)",
           }}
           whileInView={{
             opacity: 1,
             x: 0,
-            filter: "blur(0px)"
+            filter: "blur(0px)",
           }}
           transition={{
             duration: 1,
-            ease: "easeOut"
+            ease: "easeInOut",
           }}
           viewport={{ once: true }}
         >
@@ -30,13 +29,8 @@ const Hero = () => {
           posicionamento.
         </motion.h1>
 
-        <div 
-          className="dicionary-design"
-        >
-
-          <p className="saints-dicionary-name">
-            saints.
-          </p>
+        <div className="dicionary-design">
+          <p className="saints-dicionary-name">saints.</p>
 
           <div className="dicionary">
             <p>/seints/ s. f.</p>
@@ -53,15 +47,14 @@ const Hero = () => {
 
             <p>Saints Films</p>
 
-            <p>onde marcas deixam de aparecer <br /> e começam a ser percebidas.</p>
-            
+            <p>
+              onde marcas deixam de aparecer <br /> e começam a ser percebidas.
+            </p>
           </div>
-
         </div>
-
       </section>
     </>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
